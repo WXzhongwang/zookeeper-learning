@@ -1,0 +1,13 @@
+/target
+.project
+.classpath
+.settings/
+.checkstyle
+.springBeans
+.externalToolBuilders/
+.idea/
+*.iml
+**/.tgitconfig
+/build
+/bin
+/coverage-report
