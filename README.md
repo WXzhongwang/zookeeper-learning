@@ -63,29 +63,29 @@ create -s /monkey xxxxx
 
 
 znode节点属性：
-cZxid = 0x2
-ctime = Tue Jun 04 23:21:32 CST 2019
-mZxid = 0x2
-mtime = Tue Jun 04 23:21:32 CST 2019
-pZxid = 0xa
-cversion = 1
-dataVersion = 0
-aclVersion = 0
-ephemeralOwner = 0x0
-dataLength = 0
-numChildren = 1
+- cZxid = 0x2
+- ctime = Tue Jun 04 23:21:32 CST 2019
+- mZxid = 0x2
+- mtime = Tue Jun 04 23:21:32 CST 2019
+- pZxid = 0xa
+- cversion = 1
+- dataVersion = 0
+- aclVersion = 0
+- ephemeralOwner = 0x0
+- dataLength = 0
+- numChildren = 1
 
 ## 集群模式 （选举）
 zk一般部署奇数个
 
 zoo.cfg文件修改，2888端口，添加集群机器
-server.1=196.128.3.1:2888:3888
-server.2=196.128.3.2:2888:3888
-server.3=196.128.3.3:2888:3888
+- server.1=196.128.3.1:2888:3888
+- server.2=196.128.3.2:2888:3888
+- server.3=196.128.3.3:2888:3888
 
 选举模式 ==> 过半选举（过半原则）
-Mode: leader
-Mode: follower
+-Mode: leader
+-Mode: follower
 
 
 查看状态：
