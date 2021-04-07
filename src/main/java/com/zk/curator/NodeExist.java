@@ -35,7 +35,7 @@ public class NodeExist {
 
         client.checkExists().inBackground(new BackgroundCallback() {
 
-            public void processResult(CuratorFramework arg0, CuratorEvent arg1)
+            @Override public void processResult(CuratorFramework arg0, CuratorEvent arg1)
                     throws Exception {
 
                 Stat stat = arg1.getStat();

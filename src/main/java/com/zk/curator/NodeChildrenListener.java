@@ -30,7 +30,7 @@ public class NodeChildrenListener {
 
         client.start();
 
-        final PathChildrenCache cache = new PathChildrenCache(client,"/dick",true);
+        final PathChildrenCache cache = new PathChildrenCache(client,"/Mutex",true);
         cache.start();
 
         cache.getListenable().addListener(new PathChildrenCacheListener() {

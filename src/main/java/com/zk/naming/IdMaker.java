@@ -21,10 +21,15 @@ public class IdMaker {
 
     private final String root;
 
-    // 顺序节点的名称
+    /**
+     * 顺序节点的名称
+     */
     private final String nodeName;
 
-    // 标识当前服务是否正在运行
+    //
+    /**
+     * 标识当前服务是否正在运行
+     */
     private volatile boolean running = false;
 
     private ExecutorService cleanExector = null;
@@ -43,11 +48,13 @@ public class IdMaker {
 
     }
 
-    // 启动服务
+    /**
+     * 启动服务
+     */
     public void start() throws Exception {
 
         if (running) {
-            throw new Exception("server has stated...");
+            throw new Exception("server has started...");
         }
 
         running = true;
@@ -56,7 +63,9 @@ public class IdMaker {
 
     }
 
-    // 停止服务
+    /**
+     * 停止服务
+     */
     public void stop() throws Exception {
         if (!running) {
             throw new Exception("server has stopped...");
@@ -66,11 +75,12 @@ public class IdMaker {
         freeResource();
     }
 
-    // 初始化服务资源
+    /**
+     * 初始化服务资源
+     */
     private void init() {
 
         client = new ZkClient(server, 5000, 5000, new BytesPushThroughSerializer());
-        //cleanExector = Executors.newFixedThreadPool(10);
         cleanExector = new ThreadPoolExecutor(6, 12, 5L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>(10), new ThreadPoolExecutor.CallerRunsPolicy());
         try {
             client.createPersistent(root, true);
@@ -80,10 +90,11 @@ public class IdMaker {
 
     }
 
-    // 释放服务器资源
+    /**
+     * 释放服务器资源
+     */
     private void freeResource() {
 
-        // 释放线程池
         cleanExector.shutdown();
         try {
             cleanExector.awaitTermination(2, TimeUnit.SECONDS);
@@ -100,15 +111,24 @@ public class IdMaker {
         }
     }
 
-    // 检测当前服务是否正在运行
+    /**
+     * 检测当前服务是否正在运行
+     */
     private void checkRunning() throws Exception {
+
         if (!running) {
             throw new Exception("请先调用start");
         }
     }
 
-    // 从顺序节点名中提取我们要的ID值
+
+    /**
+     * 从顺序节点名中提取我们要的ID值
+     *
+     * @param str 节点名
+     */
     private String ExtractId(String str) {
+
         int index = str.lastIndexOf(nodeName);
         if (index >= 0) {
             index += nodeName.length();
@@ -118,7 +138,9 @@ public class IdMaker {
 
     }
 
-    // 生成ID
+    /**
+     * 生成ID
+     */
     public String generateId(RemoveMethod removeMethod) throws Exception {
         checkRunning();
 

@@ -19,7 +19,7 @@ public class SubscribeChildChanges {
         /*
         * 监听节点的子节点， 自身（创建，删除）也会受到通知
         * */
-        public void handleChildChange(String parentPath,
+        @Override public void handleChildChange(String parentPath,
                                       List<String> currentChilds) throws Exception {
             System.out.println("Node Change");
             System.out.println(parentPath);

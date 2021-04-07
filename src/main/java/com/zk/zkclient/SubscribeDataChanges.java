@@ -13,13 +13,13 @@ import org.I0Itec.zkclient.serialize.SerializableSerializer;
 public class SubscribeDataChanges {
     private static class ZkDataListener  implements IZkDataListener {
 
-        public void handleDataChange(String dataPath, Object data)
+        @Override public void handleDataChange(String dataPath, Object data)
                 throws Exception {
             System.out.println("节点数据被改变");
             System.out.println(dataPath + ":" + data.toString());
         }
 
-        public void handleDataDeleted(String dataPath) throws Exception {
+        @Override public void handleDataDeleted(String dataPath) throws Exception {
             System.out.println("节点被删除");
             System.out.println(dataPath);
         }
